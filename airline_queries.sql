@@ -39,5 +39,18 @@ ORDER BY avg_fare DESC;
 
 =======================================================================
 -- Query 3
--- Passenger volume by airline
+-- Highest passenger volume by airline
+=======================================================================
+SELECT  
+  CARRIER_NAME,
+  SUM(`Market Passengers`) total_passengers,
+  COUNT(CARRIER_NAME)
+FROM `airline-data-490803.Airline_Data.Airline Carrier Data Table` 
+GROUP BY CARRIER_NAME
+HAVING COUNT(*) >= 30
+ORDER BY total_passengers DESC;
+
+=======================================================================
+-- Query 4
+-- Highest passenger volume by airline
 =======================================================================
