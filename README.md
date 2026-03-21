@@ -39,7 +39,7 @@ All SQL quereies used in this project can be found here:
 ## Visualizations
 ### Average Domestic Airline Fare (1993-2025)
 
-![Fare Trend](visuals/fare-trend.png)
+![Fare Trend](visuals/Fare-Trend.png)
 
 This visualization shows a gradual increase in airline fares from the 1990s to the mid-2010s, followed by a sharp drop in 2020 corresopnding to the collapse in air travel demand during the COVID-19 pandemic. Fares begine recovering almost immediately in following years, seeming to have a more stable pricing across time with little fluctuation. 
 
