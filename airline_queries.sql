@@ -10,11 +10,22 @@
 -- Average airline fare by year
 =======================================================================
   
-SELECT Year,
-  ROUND(AVG(`Average Market Fare _Current __`), 2) AS avg_fare_by_year
-FROM `aff-average-air-fare-carrier.Air_Fare_Trends.AFF_carrier_data` 
-Group By Year
-ORDER BY Year;
+  WITH over_30_yrs AS (
+  SELECT CARRIER_NAME
+  FROM `airline-data-490803.Airline_Data.Airline Carrier Data Table`
+  GROUP BY CARRIER_NAME  
+  HAVING COUNT(*) >= 30
+)
+
+SELECT 
+  ROUND(AVG(`Average Market Fare _Current __`), 2) AS avg_fare,
+  SUM(`Market Passengers`) AS pass_total,
+  Year
+FROM `airline-data-490803.Airline_Data.Airline Carrier Data Table` a
+JOIN over_30_yrs o
+  ON a.CARRIER_NAME = o.CARRIER_NAME
+GROUP BY year
+ORDER BY year
 
 =======================================================================
 -- Query 2
