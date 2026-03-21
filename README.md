@@ -41,8 +41,10 @@ All SQL quereies used in this project can be found here:
 
 ![Fare Trend](visuals/Fare-Trend.png)
 
-This visualization shows a gradual increase in airline fares from the 1990s to the mid-2010s, followed by a sharp drop in 2020 corresopnding to the collapse in air travel demand during the COVID-19 pandemic. Fares begine recovering almost immediately in following years, seeming to have a more stable pricing across time with little fluctuation. 
+  This visualization shows a gradual increase in airline fares from the 1990s to the mid-2010s, followed by a sharp drop in 2020 corresponding to the collapse in air travel demand during the COVID-19 pandemic. The pricing hit its peak in 2014, but has shown a surpising lack of fluctuation outside of the previously mentioned year due to Covid-19. Following 2020 prices were the least subject to fluctuation.
+  The visualization underneath shows the trend of total passengers by year. The trend shows to be a rather consistent increase in passenger volume over time, with a steep drop off in 2025 possibly due to when the data was collected, possibly indicating incomplete data for that year. There is a striking relationship between the passenger volume and airline fares. Both charts show a stable trend upward, with a sharp spike down during 2020, which was consistent with what was expected. 
 
 ## Key Insights
 - Airline fares show a long-term upward trend from the early 1990s until the mid 2010s.
-- A significant drop in pricing occurs in 2020, corresponding to the drop in demand for travel during the COVID-19 pandemic. 
+- A significant drop in pricing occurs in 2020, corresponding to the drop in demand for travel during the COVID-19 pandemic.
+- There is a significant correlation between volume of passengers and air fare trends, though their peaks do not line up. 
