@@ -37,14 +37,15 @@ All SQL quereies used in this project can be found here:
 /sql/airline_queries.sql
 
 ## Visualizations
-### Average Domestic Airline Fare (1993-2025)
+### Average Domestic Airline Fare & Passenger Volume (1993-2025)
 
 ![Fare Trend](visuals/Fare-Trend.png)
 
   This visualization shows a gradual increase in airline fares from the 1990s to the mid-2010s, followed by a sharp drop in 2020 corresponding to the collapse in air travel demand during the COVID-19 pandemic. The pricing hit its peak in 2014, but has shown a surpising lack of fluctuation outside of the previously mentioned year due to Covid-19. Following 2020 prices were the least subject to fluctuation.
-  The visualization underneath shows the trend of total passengers by year. The trend shows to be a rather consistent increase in passenger volume over time, with a steep drop off in 2025 possibly due to when the data was collected, possibly indicating incomplete data for that year. There is a striking relationship between the passenger volume and airline fares. Both charts show a stable trend upward, with a sharp spike down during 2020, which was consistent with what was expected. 
+  The lowest passenger total overall was correlated with the Covid-19 pandemic. When both graphs are viewed, they exhibit a broadly similar trend increase, though this does not alone prove their statistical relationship
 
 ## Key Insights
 - Airline fares show a long-term upward trend from the early 1990s until the mid 2010s.
 - A significant drop in pricing occurs in 2020, corresponding to the drop in demand for travel during the COVID-19 pandemic.
-- There is a significant correlation between volume of passengers and air fare trends, though their peaks do not line up. 
+- Passenger volume hit its lowest in 2020, while pricing had reached its minimum average in 1995.
+- There is a similarity in upward trend across time between air fare and passenger volume, though this does chart does not prove the relationship
