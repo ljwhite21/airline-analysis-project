@@ -7,47 +7,61 @@
   
 =======================================================================
 -- Query 1
--- Average airline fare by year
+-- Average fare by airline by year
 =======================================================================
-  
-  WITH over_30_yrs AS (
-  SELECT CARRIER_NAME
+  SELECT 
+  CARRIER_NAME,
+  Year,
+  `Average Market Fare _Current __` AS avg_fare
+FROM (
+  SELECT 
+    *,
+    COUNT(*) OVER (PARTITION BY CARRIER_NAME) as carrier_count
   FROM `airline-data-490803.Airline_Data.Airline Carrier Data Table`
-  GROUP BY CARRIER_NAME  
-  HAVING COUNT(*) >= 30
-)
-
-SELECT 
-  ROUND(AVG(`Average Market Fare _Current __`), 2) AS avg_fare,
-  SUM(`Market Passengers`) AS pass_total,
-  Year
-FROM `airline-data-490803.Airline_Data.Airline Carrier Data Table` a
-JOIN over_30_yrs o
-  ON a.CARRIER_NAME = o.CARRIER_NAME
-GROUP BY year
-ORDER BY year
-
+  )
+  WHERE carrier_count >= 30
+  ORDER BY Year, CARRIER_NAME
 =======================================================================
 -- Query 2
--- Highest average fares by airline
+-- How does passenger volume change in response to increases in average 
+    fare across airlines over time?
 =======================================================================
   
-WITH no_of_flights AS (
+ WITH airline_years AS (
   SELECT 
     CARRIER_NAME,
-    COUNT(CARRIER_NAME) AS total_flights,
-    ROUND(AVG(`Average Market Fare _Current __`), 2) AS avg_fare
-  FROM `airline-data-490803.Airline_Data.Airline Carrier Data Table`
-  GROUP BY CARRIER_NAME
-  HAVING COUNT(CARRIER_NAME) >= 30
-)
+    Year,
+    `Average Market Fare _Current __` AS current_fare,
+    `Market Passengers` AS current_passenger,
+    COUNT(*) OVER (PARTITION BY CARRIER_NAME) AS carrier_count 
+    FROM `airline-data-490803.Airline_Data.Airline Carrier Data Table`
+ )
 
 SELECT 
   CARRIER_NAME,
-  avg_fare
-FROM no_of_flights
-ORDER BY avg_fare DESC;
+  Year,
+  current_fare,
+  LAG(current_fare) OVER (
+    PARTITION BY CARRIER_NAME
+    ORDER BY Year
+  ) AS previous_fare,
+    current_fare - LAG(current_fare) OVER (
+    PARTITION BY CARRIER_NAME
+    ORDER BY Year
+  ) AS fare_change,
+  LAG(current_passenger) OVER (
+    PARTITION BY CARRIER_NAME
+    ORDER BY Year
+  ) AS previous_passenger,
+  current_passenger - LAG(current_passenger) OVER (
+    PARTITION BY CARRIER_NAME
+    ORDER BY Year
+  ) AS passenger_change
 
+FROM  airline_years
+WHERE carrier_count >= 30
+ORDER BY Year, CARRIER_NAME
+  
 =======================================================================
 -- Query 3
 -- Highest passenger volume by airline
