@@ -37,15 +37,15 @@ WITH no_of_flights AS (
     CARRIER_NAME,
     COUNT(CARRIER_NAME) AS total_flights,
     ROUND(AVG(`Average Market Fare _Current __`), 2) AS avg_fare
-  FROM `aff-average-air-fare-carrier.Air_Fare_Trends.AFF_carrier_data` 
+  FROM `airline-data-490803.Airline_Data.Airline Carrier Data Table`
   GROUP BY CARRIER_NAME
+  HAVING COUNT(CARRIER_NAME) >= 30
 )
+
 SELECT 
-  total_flights,
   CARRIER_NAME,
   avg_fare
-FROM no_of_flights n
-WHERE n.total_flights > 29
+FROM no_of_flights
 ORDER BY avg_fare DESC;
 
 =======================================================================
